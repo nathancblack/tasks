@@ -20,7 +20,7 @@ export function isCorrect(question: Question, answer: string): boolean {
     const stripped_expected: string = question.expected.trim().toLowerCase()
     const stripped_answer: string = answer.trim().toLowerCase()
 
-    
+
     return stripped_expected === stripped_answer;
 }
 
@@ -36,7 +36,7 @@ export function isValid(question: Question, answer: string): boolean {
     } else {
         return question.options.includes(answer);
     }
-    
+
 }
 
 /**
