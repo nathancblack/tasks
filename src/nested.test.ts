@@ -22,7 +22,8 @@ import backupQuestionData from "./data/questions.json";
 
 const {
     BLANK_QUESTIONS,
-    SIMPLE_QUESTIONS, TRIVIA_QUESTIONS,
+    SIMPLE_QUESTIONS,
+    TRIVIA_QUESTIONS,
     EMPTY_QUESTIONS,
     SIMPLE_QUESTIONS_2
 }: Record<string, Question[]> =
