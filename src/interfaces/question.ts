@@ -8,8 +8,7 @@ export interface Question {
     /** The human-friendly title of the question */
     name: string;
     /** The instructions and content of the Question */
-    body: string;
-    /** The kind of Question; influences how the user answers and what options are displayed */
+    body: string; /** The kind of Question; influences how the user answers and what options are displayed */
     type: QuestionType;
     /** The possible answers for a Question (for Multiple Choice questions) */
     options: string[];
