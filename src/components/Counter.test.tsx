@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { Counter } from "./Counter";
 
 describe("Counter Component tests", () => {
@@ -24,15 +24,15 @@ describe("Counter Component tests", () => {
 
     test("Clicking the button once adds one", () => {
         const addOneButton = screen.getByRole("button", { name: /Add One/i });
-        addOneButton.click();
+        fireEvent.click(addOneButton);
         const valueText = screen.getByText(/1/i);
         expect(valueText).toBeInTheDocument();
     });
 
     test("Clicking the button twice adds two", () => {
         const addOneButton = screen.getByRole("button", { name: /Add One/i });
-        addOneButton.click();
-        addOneButton.click();
+        fireEvent.click(addOneButton);
+        fireEvent.click(addOneButton);
         const valueText = screen.getByText(/2/i);
         expect(valueText).toBeInTheDocument();
     });
