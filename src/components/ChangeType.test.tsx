@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { ChangeType } from "./ChangeType";
 
 describe("ChangeType Component tests", () => {
@@ -28,7 +28,7 @@ describe("ChangeType Component tests", () => {
         const changeTypeButton = screen.getByRole("button", {
             name: /Change Type/i
         });
-        changeTypeButton.click();
+        fireEvent.click(changeTypeButton);
         // Should be Multiple Choice
         const typeTextMC = screen.getByText(/Multiple Choice/i);
         expect(typeTextMC).toBeInTheDocument();
@@ -41,8 +41,8 @@ describe("ChangeType Component tests", () => {
         const changeTypeButton = screen.getByRole("button", {
             name: /Change Type/i
         });
-        changeTypeButton.click();
-        changeTypeButton.click();
+        fireEvent.click(changeTypeButton);
+        fireEvent.click(changeTypeButton);
         // Should be Short Answer
         const typeTextSA = screen.getByText(/Short Answer/i);
         expect(typeTextSA).toBeInTheDocument();

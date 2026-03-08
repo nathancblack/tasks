@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { StartAttempt } from "./StartAttempt";
 
 /***
@@ -62,7 +62,7 @@ describe("StartAttempt Component tests", () => {
         const mulliganButton = screen.getByRole("button", {
             name: /Mulligan/i
         });
-        mulliganButton.click();
+        fireEvent.click(mulliganButton);
         const attemptNumberLater = extractDigits(screen.getByText(/(\d+)/));
         expect(attemptNumber + 1).toEqual(attemptNumberLater);
     });
@@ -72,8 +72,8 @@ describe("StartAttempt Component tests", () => {
         const mulliganButton = screen.getByRole("button", {
             name: /Mulligan/i
         });
-        mulliganButton.click();
-        mulliganButton.click();
+        fireEvent.click(mulliganButton);
+        fireEvent.click(mulliganButton);
         const attemptNumberLater = extractDigits(screen.getByText(/(\d+)/));
         expect(attemptNumber + 2).toEqual(attemptNumberLater);
     });
@@ -83,7 +83,7 @@ describe("StartAttempt Component tests", () => {
         const startButton = screen.getByRole("button", {
             name: /Start Quiz/i
         });
-        startButton.click();
+        fireEvent.click(startButton);
         const attemptNumberLater =
             extractDigits(screen.getByText(/(\d+)/)) || 0;
         expect(attemptNumber - 1).toEqual(attemptNumberLater);
@@ -98,7 +98,7 @@ describe("StartAttempt Component tests", () => {
             name: /Mulligan/i
         });
         // When the start button is clicked
-        startButton.click();
+        fireEvent.click(startButton);
         // Then the start is disabled, stop is enabled, and mulligan is disabled
         expect(startButton).toBeDisabled();
         expect(stopButton).toBeEnabled();
@@ -114,8 +114,8 @@ describe("StartAttempt Component tests", () => {
             name: /Mulligan/i
         });
         // When we click the start button and then the stop button
-        startButton.click();
-        stopButton.click();
+        fireEvent.click(startButton);
+        fireEvent.click(stopButton);
         // Then the start is enabled, stop is disabled, and mulligan is enabled
         expect(startButton).toBeEnabled();
         expect(stopButton).toBeDisabled();
@@ -133,14 +133,14 @@ describe("StartAttempt Component tests", () => {
         const attemptNumber: number =
             extractDigits(screen.getByText(/(\d+)/)) || 0;
         // When we click the start button and then the stop button
-        startButton.click();
-        stopButton.click();
+        fireEvent.click(startButton);
+        fireEvent.click(stopButton);
         // Then the attempt is decreased
         const attemptNumberLater: number =
             extractDigits(screen.getByText(/(\d+)/)) || 0;
         expect(attemptNumber - 1).toEqual(attemptNumberLater);
         // And when we click the mulligan button
-        mulliganButton.click();
+        fireEvent.click(mulliganButton);
         // Then the attempt is increased back to starting value
         const attemptNumberLatest: number =
             extractDigits(screen.getByText(/(\d+)/)) || 0;
@@ -166,8 +166,8 @@ describe("StartAttempt Component tests", () => {
             expect(stopButton).toBeDisabled();
             expect(mulliganButton).toBeEnabled();
             // And when we Start and then immediately stop the quiz...
-            startButton.click();
-            stopButton.click();
+            fireEvent.click(startButton);
+            fireEvent.click(stopButton);
             // Then the number is going down, and doesn't go past 0 somehow
             attemptNumber = extractDigits(screen.getByText(/(\d+)/)) || 0;
             expect(attemptNumber).toBeGreaterThanOrEqual(0);
@@ -183,7 +183,7 @@ describe("StartAttempt Component tests", () => {
         expect(stopButton).toBeDisabled();
         expect(mulliganButton).toBeEnabled();
         // And when we click the mulligan button
-        mulliganButton.click();
+        fireEvent.click(mulliganButton);
         // Then the attempt is increased back to 1
         const attemptNumberLatest: number =
             extractDigits(screen.getByText(/(\d+)/)) || 0;
