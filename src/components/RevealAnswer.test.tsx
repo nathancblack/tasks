@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { RevealAnswer } from "./RevealAnswer";
 
 describe("RevealAnswer Component tests", () => {
@@ -20,7 +20,7 @@ describe("RevealAnswer Component tests", () => {
         const revealButton = screen.getByRole("button", {
             name: /Reveal Answer/i
         });
-        revealButton.click();
+        fireEvent.click(revealButton);
         const answerText = screen.getByText(/42/);
         expect(answerText).toBeInTheDocument();
     });
@@ -28,8 +28,8 @@ describe("RevealAnswer Component tests", () => {
         const revealButton = screen.getByRole("button", {
             name: /Reveal Answer/i
         });
-        revealButton.click();
-        revealButton.click();
+        fireEvent.click(revealButton);
+        fireEvent.click(revealButton);
         const answerText = screen.queryByText(/42/);
         expect(answerText).toBeNull();
     });
