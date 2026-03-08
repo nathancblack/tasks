@@ -7,5 +7,8 @@ export function ChangeType(): React.JSX.Element {
     function changeType(): void{
         type === "short_answer_question" ? setType("multiple_choice_question") : setType("short_answer_question");
   }
-    return <div><Button onClick={ changeType }>Change Type </Button>{type === "short_answer_question" ? <div> Short Answer</div> : <div>Multiple Choice</div>}<div></div></div>;
+    return <div>
+    <Button onClick={ changeType }>Change Type </Button>
+    {type === "short_answer_question" ? <div> Short Answer</div> : <div>Multiple Choice</div>}
+    </div>;
 }

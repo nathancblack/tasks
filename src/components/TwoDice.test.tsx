@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { TwoDice } from "./TwoDice";
 import { extractDigits } from "./StartAttempt.test";
 
@@ -47,9 +47,9 @@ describe("TwoDice Component tests", () => {
     });
     test("Clicking left button changes first number", () => {
         const leftButton = screen.getByRole("button", { name: /Roll Left/i });
-        leftButton.click();
-        leftButton.click();
-        leftButton.click();
+        fireEvent.click(leftButton);
+        fireEvent.click(leftButton);
+        fireEvent.click(leftButton);
         // Then the random function should be called 3 times
         expect(mathRandomFunction).toBeCalledTimes(3);
         // And the number to be 5
@@ -59,9 +59,9 @@ describe("TwoDice Component tests", () => {
     // Clicking right button changes second number
     test("Clicking right button changes second number", () => {
         const rightButton = screen.getByRole("button", { name: /Roll Right/i });
-        rightButton.click();
-        rightButton.click();
-        rightButton.click();
+        fireEvent.click(rightButton);
+        fireEvent.click(rightButton);
+        fireEvent.click(rightButton);
         // Then the random function should be called 3 times
         expect(mathRandomFunction).toBeCalledTimes(3);
         // And the number to be 5
@@ -76,8 +76,8 @@ describe("TwoDice Component tests", () => {
         const leftDie = screen.getByTestId("left-die");
         const rightDie = screen.getByTestId("right-die");
         // When the left and right buttons are rolled once each
-        leftButton.click();
-        rightButton.click();
+        fireEvent.click(leftButton);
+        fireEvent.click(rightButton);
         // Then the numbers are not equal
         const leftNumber = extractDigits(leftDie);
         const rightNumber = extractDigits(rightDie);
@@ -97,11 +97,11 @@ describe("TwoDice Component tests", () => {
         const leftDie = screen.getByTestId("left-die");
         const rightDie = screen.getByTestId("right-die");
         // When the left and right buttons are rolled once each
-        leftButton.click();
-        rightButton.click();
-        rightButton.click();
-        rightButton.click();
-        rightButton.click();
+        fireEvent.click(leftButton);
+        fireEvent.click(rightButton);
+        fireEvent.click(rightButton);
+        fireEvent.click(rightButton);
+        fireEvent.click(rightButton);
         // Then the numbers are not equal
         const leftNumber = extractDigits(leftDie);
         const rightNumber = extractDigits(rightDie);
@@ -121,10 +121,10 @@ describe("TwoDice Component tests", () => {
         const leftDie = screen.getByTestId("left-die");
         const rightDie = screen.getByTestId("right-die");
         // When the left and right buttons are rolled once each
-        leftButton.click();
-        leftButton.click();
-        leftButton.click();
-        rightButton.click();
+        fireEvent.click(leftButton);
+        fireEvent.click(leftButton);
+        fireEvent.click(leftButton);
+        fireEvent.click(rightButton);
         // Then the numbers are not equal
         const leftNumber = extractDigits(leftDie);
         const rightNumber = extractDigits(rightDie);
