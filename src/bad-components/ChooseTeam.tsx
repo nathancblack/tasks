@@ -11,18 +11,18 @@ const PEOPLE = [
     "Margaret Hamilton"
 ];
 
-export function ChooseTeam(): JSX.Element {
-    const [allOptions, setAllOptions] = useState<string[]>(PEOPLE);
+export function ChooseTeam(): React.JSX.Element {
+    const [allOptions] = useState<string[]>(PEOPLE);
     const [team, setTeam] = useState<string[]>([]);
 
     function chooseMember(newMember: string) {
         if (!team.includes(newMember)) {
-            flushSync(() => setTeam([...team, newMember]));
+            flushSync(() => { setTeam([...team, newMember]); });
         }
     }
 
     function clearTeam() {
-        flushSync(() => setTeam([]));
+        flushSync(() => { setTeam([]); });
     }
 
     return (
@@ -33,7 +33,7 @@ export function ChooseTeam(): JSX.Element {
                     {allOptions.map((option: string) => (
                         <div key={option} style={{ marginBottom: "4px" }}>
                             Add{" "}
-                            <Button onClick={() => chooseMember(option)} size="sm">
+                            <Button onClick={() => { chooseMember(option); }} size="sm">
                                 {option}
                             </Button>
                         </div>

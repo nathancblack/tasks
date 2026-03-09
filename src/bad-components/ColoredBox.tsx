@@ -11,15 +11,15 @@ function ChangeColor({
 }: {
     colorIndex: number;
     setColorIndex: (newIndex: number) => void;
-}): JSX.Element {
+}): React.JSX.Element {
     return (
-        <Button onClick={() => setColorIndex((1 + colorIndex) % COLORS.length)}>
+        <Button onClick={() => { setColorIndex((1 + colorIndex) % COLORS.length); }}>
             Next Color
         </Button>
     );
 }
 
-function ColorPreview({ colorIndex }: { colorIndex: number }): JSX.Element {
+function ColorPreview({ colorIndex }: { colorIndex: number }): React.JSX.Element {
     return (
         <div
             data-testid="colored-box"
@@ -35,10 +35,10 @@ function ColorPreview({ colorIndex }: { colorIndex: number }): JSX.Element {
     );
 }
 
-export function ColoredBox(): JSX.Element {
+export function ColoredBox(): React.JSX.Element {
     const [colorIndex, setColorIndex] = useState<number>(DEFAULT_COLOR_INDEX);
     function setColorIndexSync(newIndex: number) {
-        flushSync(() => setColorIndex(newIndex));
+        flushSync(() => { setColorIndex(newIndex); });
     }
     return (
         <div>

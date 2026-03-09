@@ -8,8 +8,8 @@ function Doubler({
 }: {
     dhValue: number;
     setDhValue: (newValue: number) => void;
-}): JSX.Element {
-    return <Button onClick={() => setDhValue(2 * dhValue)}>Double</Button>;
+}): React.JSX.Element {
+    return <Button onClick={() => { setDhValue(2 * dhValue); }}>Double</Button>;
 }
 
 function Halver({
@@ -18,14 +18,14 @@ function Halver({
 }: {
     dhValue: number;
     setDhValue: (newValue: number) => void;
-}): JSX.Element {
-    return <Button onClick={() => setDhValue(0.5 * dhValue)}>Halve</Button>;
+}): React.JSX.Element {
+    return <Button onClick={() => { setDhValue(0.5 * dhValue); }}>Halve</Button>;
 }
 
-export function DoubleHalf(): JSX.Element {
+export function DoubleHalf(): React.JSX.Element {
     const [dhValue, setDhValue] = useState<number>(10);
     function setDhValueSync(newValue: number) {
-        flushSync(() => setDhValue(newValue));
+        flushSync(() => { setDhValue(newValue); });
     }
     return (
         <div>

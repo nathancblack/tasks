@@ -8,13 +8,13 @@ function ShoveBoxButton({
 }: {
     position: number;
     setPosition: (newPosition: number) => void;
-}) {
+}): React.JSX.Element {
     return (
-        <Button onClick={() => setPosition(4 + position)}>Shove the Box</Button>
+        <Button onClick={() => { setPosition(4 + position); }}>Shove the Box</Button>
     );
 }
 
-function MoveableBox({ position }: { position: number }): JSX.Element {
+function MoveableBox({ position }: { position: number }): React.JSX.Element {
     return (
         <div
             data-testid="moveable-box"
@@ -31,10 +31,10 @@ function MoveableBox({ position }: { position: number }): JSX.Element {
     );
 }
 
-export function ShoveBox(): JSX.Element {
+export function ShoveBox(): React.JSX.Element {
     const [position, setPosition] = useState<number>(10);
     function setPositionSync(newPosition: number) {
-        flushSync(() => setPosition(newPosition));
+        flushSync(() => { setPosition(newPosition); });
     }
     return (
         <div>
