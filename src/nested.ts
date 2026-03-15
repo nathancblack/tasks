@@ -1,6 +1,7 @@
 import { Answer } from "./interfaces/answer";
 import { Question, QuestionType } from "./interfaces/question";
 import { makeBlankQuestion, duplicateQuestion } from "./objects";
+
 /**
  * Consumes an array of questions and returns a new array with only the questions
  * that are `published`.
@@ -15,10 +16,10 @@ export function getPublishedQuestions(questions: Question[]): Question[] {
  * `expected`, and an empty array for its `options`.
  */
 export function getNonEmptyQuestions(questions: Question[]): Question[] {
-    return questions.filter((question: Question): boolean => 
+    return questions.filter((question: Question): boolean =>
         question.body !== "" ||
         question.expected !== "" ||
-        question.options.length !== 0 
+        question.options.length !== 0
     );
 }
 
@@ -81,7 +82,7 @@ id,name,options,points,published
  * Check the unit tests for more examples!
  */
 export function toCSV(questions: Question[]): string {
-    return `id,name,options,points,published\n${questions.map((question: Question): string => 
+    return `id,name,options,points,published\n${questions.map((question: Question): string =>
     `${question.id},${question.name},${question.options.length},${question.points},${question.published}`).join("\n")}`;
 }
 
