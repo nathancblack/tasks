@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { flushSync } from "react-dom";
 import { Button, Form } from "react-bootstrap";
 
 export function GiveAttempts(): React.JSX.Element {
@@ -8,8 +9,10 @@ export function GiveAttempts(): React.JSX.Element {
     function gainAttempts(): void {
         const parsed = parseInt(attemptsRequested);
         if (!isNaN(parsed)) {
-            setAttemptsLeft(attemptsLeft + parsed);
-            setAttemptsRequested("");
+            flushSync(() => {
+                setAttemptsLeft(attemptsLeft + parsed);
+                setAttemptsRequested("");
+            });
         }
     }
 
@@ -29,7 +32,7 @@ export function GiveAttempts(): React.JSX.Element {
             </Form.Group>
             <Button
                 onClick={() => {
-                    setAttemptsLeft(attemptsLeft - 1);
+                    flushSync(() => { setAttemptsLeft(attemptsLeft - 1); });
                 }}
                 disabled={attemptsLeft === 0}
             >
